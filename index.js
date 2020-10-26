@@ -7,6 +7,8 @@ const port = 4545;
 
 let app = express();
 
+app.use(express.json()); // Tell express how to parse json bodies
+
 let bottleSchema = new mongoose.Schema({
   name: String,
   country: String,
@@ -29,6 +31,15 @@ app.get('/bottles', (req, res) => {
     res.send(JSON.stringify(bottles));
   });
 
+});
+
+app.post('/bottles', (req, res) => {
+    let bottleData = req.body;
+    console.log(bottleData);
+    // TODO:
+    // 1. Create a new Bottle with bottleData
+    // 2. Save it
+    res.send("OK");
 });
 
 function start() {
