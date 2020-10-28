@@ -39,6 +39,9 @@ app.post('/bottles', (req, res) => {
     // TODO:
     // 1. Create a new Bottle with bottleData
     // 2. Save it
+    let bottle = new Bottle(bottleData);
+    bottle.save();
+
     res.send("OK");
 });
 
