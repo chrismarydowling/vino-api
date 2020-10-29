@@ -20,7 +20,16 @@ let bottleSchema = new mongoose.Schema({
 let Bottle = mongoose.model('Bottle', bottleSchema);
 
 
+let logger = (req, res, next) => {
+  let method = req.method;
+  let url = req.url;
+  let status = res.statusCode;
+  let log = `${method}:${url} ${status}`;
+  console.log(log);
+  next();
+};
 
+app.use(logger);
 
 app.get('/bottles', (req, res) => {
   Bottle.find((err, bottles)=>{
@@ -44,6 +53,7 @@ app.post('/bottles', (req, res) => {
 
     res.send("OK");
 });
+
 
 function start() {
 
